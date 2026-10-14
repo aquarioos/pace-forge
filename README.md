@@ -1,2 +1,2 @@
 # pace-forge
-A scalable Go application demonstrating an async API/Worker pattern for running metrics calculations.
+A scalable Go application demonstrating a microserices pattern for running metrics calculations.
