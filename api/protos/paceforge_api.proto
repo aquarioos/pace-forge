@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package paceforge.api.v1;
+
+option go_package= ".";
+
+import "google/protobuf/empty.proto";
+
+// Service definition for the PaceForge API
+service PaceForgeApiService {
+  
+  // Retrieves metadata about the API (name, version, description)
+  rpc About (google.protobuf.Empty) returns (AboutResponse);
+
+  // Calculates running pace and speed given distance in meters and time in seconds
+  rpc CalcPace (CalcPaceRequest) returns (CalcPaceResponse);
+
+  // Placeholder endpoint for calculating negative splits (currently empty)
+  rpc CalcNegativeSplit (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+// -----------------------------------------------------------------
+// Message Definitions
+// -----------------------------------------------------------------
+
+message AboutResponse {
+  string name = 1;
+  string version = 2;
+  string description = 3;
+}
+
+message CalcPaceRequest {
+  float distance_meters = 1;
+  float time_seconds = 2;
+}
+
+message CalcPaceResponse {
+  string pace = 1;                   // Format: "MM:SS" per km (e.g., "04:30")
+  float speed_meters_per_second = 2; // Speed in m/s
+  float speed_km_per_hour = 3;       // Speed in km/h
+}
